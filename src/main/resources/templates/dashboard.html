@@ -2,19 +2,43 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Skeleton-dashboard</title>
     <head th:replace="fragments/head :: head"></head>
 </head>
 <body>
     <div>
         <div class="row m-0">
             <div th:replace="fragments/navbar :: navbar"></div>
-<!--            <div class="ml-5 mt-5">-->
-<!--                <form th:action="@{/logout}" method="POST" name="logoutform" id="logoutform">-->
-<!--                    <button type="submit">Logout</button>-->
-<!--                </form>-->
-<!--            </div>-->
 
+            <div class="container-fluid">
+                <div class="container-padding container">
+                    <div class="mt-5">
+                        <a th:href="@{/userManagement/list}">
+                            <div class="row">
+                                <div class="col-12 px-sm-0 mb-4">
+                                    <div class="card-hover green-card ">
+                                        <div class="card-body card-height overflow-hidden">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <div class="card-icon">
+                                                        <span class="center-content">
+                                                        <i class="fa fa-user-plus fa-2x green-color"></i>
+                                                    </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-9">
+                                                    <div class="card-title">User management</div>
+                                                    <h4 class="subtitle d-none d-sm-block">Administrarea utilizatorilor aplicatiei</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

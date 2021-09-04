@@ -22,8 +22,5 @@ public class User extends AbstractAuditable {
     private String password;
     private String firstName;
     private String lastName;
-    private String job;
-    private String phone;
     private Boolean active;
-    private Boolean isContactPerson;
 }

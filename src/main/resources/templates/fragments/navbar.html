@@ -1,10 +1,14 @@
 <div th:fragment="navbar" xmlns:th="http://www.thymeleaf.org">
     <header>
         <nav class="navbar navbar-expand-md navbar-style fixed-top bottom-shadow height-80 color-logo">
-            <div class="d-none d-sm-block">
+            <div class="d-none d-sm-block col-11">
                 <a th:href="@{/}">
                     <img th:src="@{/img/navbar-logo-skeleton.png}" class="ml-3 height-75"/>
                 </a>
+            </div>
+            <div class="float-right col-1">
+                <a href="#" class="ml-5 font-size-20" onclick="document.logoutform.submit()">Logout</a>
+                <form th:action="@{/logout}" method="POST" name="logoutform" id="logoutform"></form>
             </div>
         </nav>
     </header>

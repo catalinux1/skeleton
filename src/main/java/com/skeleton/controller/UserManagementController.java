@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/userManagement")
+public class UserManagementController {
     @NonNull
     private final UserService userService;
 

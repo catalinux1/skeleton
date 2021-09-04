@@ -23,7 +23,7 @@ public class UserService {
     public List<UserModel> getUserModelList() {
         return userRepository.findAll()
                 .stream()
-                .map(user -> UserMapper.entityToModel(user))
+                .map(UserMapper::entityToModel)
                 .collect(Collectors.toList());
     }
 }
