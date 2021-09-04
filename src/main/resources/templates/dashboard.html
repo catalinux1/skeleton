@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>Acesta este dashboard-ul. Bine ai venit. Inseamna ca ai reusit autentificarea :)</div>
+    <div>
+        <form th:action="@{/logout}" method="POST" name="logoutform" id="logoutform">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</body>
+</html>

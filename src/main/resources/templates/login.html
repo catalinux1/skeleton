@@ -3,8 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Skeleton</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 </head>
 <body>
-    <div>Aici este pagina de login</div>
+<div class="mt-3 ml-5 row">
+    <form th:action="@{/login}" method="post" accept-charset="UTF-8" role="form">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <div class="input-group margin-0-auto">
+            <input type="text" class="form-control font-size-14"
+                   name="username" autofocus="autofocus" placeholder="Email"/>
+        </div>
+        <div class="input-group margin-0-auto margin-top-20">
+            <input type="password" class="form-control font-size-14"
+                   name="password" placeholder="Parola"/>
+        </div>
+        <div class="row mt-2" th:if="${session.AUTH_EXCEPTION != null OR param.error != null}">
+            <div class="col-md-12 red-color font-size-12">Incorrect username or password!</div>
+        </div>
+        <div class="input-group margin-0-auto mt-3">
+            <input class="btn green-button" id="submit" type="submit" value="Login"/>
+        </div>
+    </form>
+</div>
 </body>
 </html>
