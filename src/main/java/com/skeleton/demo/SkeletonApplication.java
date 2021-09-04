@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SkeletonApplication {
 
 	public static void main(String[] args) {
-		System.out.println("Salutare");
 		SpringApplication.run(SkeletonApplication.class, args);
 	}
 }
