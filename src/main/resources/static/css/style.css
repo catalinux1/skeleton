@@ -148,3 +148,15 @@ a:hover {
 .tbody-color {
     color: #1C4C5F;
 }
+
+.input-style {
+    border: 1px solid #E9EEFC;
+    border-radius: 4px;
+    height: 40px;
+    outline: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    color: #1C4C5F;
+    font-size: 14px;
+}

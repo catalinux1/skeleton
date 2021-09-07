@@ -20,7 +20,7 @@
                                 <a class="btn add-button">
                                    <button type="button"
                                            class="btn btn-success"
-                                           th:attr="data-target='#test'"
+                                           th:attr="data-target='#branchModal-0'"
                                            data-toggle="modal">Adauga branch</button>
                                 </a>
                                 <div class="table-responsive">
@@ -33,48 +33,67 @@
                                             </tr>
                                         </thead>
                                         <tbody class="tbody-color">
-                                        <tr>
-                                            <td>Cofetarie</td>
-                                            <td>Activ</td>
-                                            <td></td>
+                                        <tr th:each="branch : ${branchModel}">
+                                            <td th:text="${branch.getName()}"></td>
+                                            <td th:text="${branch.getActive()}"></td>
+                                            <td>
+                                                <button type="button" class="fa fa-pencil"
+                                                        th:attr="data-target='#branchModal'+${branch.id}"
+                                                        data-toggle="modal">
+                                                </button>
+                                                <!-- Modala de adaugare / editare branch -->
+                                                <div class="modal modal-change-user" th:id="|branchModal${branch.getId()}|" tabindex="-1" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <div class="modal-title modal-title-style text-center mx-auto">
+                                                                    <span>Editeaza branch</span>
+                                                                </div>
+                                                                <button type="button" class="close ml-0 pl-0"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true" class="color-white font-size-28">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="row modal-body p-3">
+                                                                <form id="submit-branch-form"
+                                                                      th:object="${branchModel}"
+                                                                      th:method="post"
+                                                                      th:action="@{/branch/form/__${branch.getId()}__}"
+                                                                      autocomplete="off">
+                                                                    <div class="card card-border-shadow">
+                                                                        <div class="card-body form-padding">
+                                                                            <div class="row">
+                                                                                <div class="col-12">
+                                                                                    <div class="form-group form-inline">
+                                                                                        <label class="col-12 col-sm-3 col-md-2 col-lg-2">
+                                                                                            <span>Denumire</span>
+                                                                                            <span class="red-color">*</span>
+                                                                                        </label>
+                                                                                        <div class="col-12 col-sm-9 col-md-6 col-lg-6">
+                                                                                            <input type="text" class="input-style" th:field="*{}"/>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger mb-0 mr-0" data-dismiss="modal">
+                                                                    <span>Renunta</span>
+                                                                </button>
+                                                                <button type="button" class="btn btn-success mb-0 mr-0">
+                                                                    <span>Salveaza</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Modala de adaugare / editare branch -->
-                    <div class="modal modal-change-user" id="test" tabindex="-1" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <div class="modal-title modal-title-style text-center mx-auto">
-                                        <span>Editeaza utilizator pentru</span>
-                                    </div>
-                                    <button type="button" class="close ml-0 pl-0"
-                                            data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true" class="color-white font-size-28">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="row modal-body p-3">
-                                    <div class="col-sm-3 modal-title-style mt-2 d-none d-sm-block">Responsabil</div>
-<!--                                    <div class="col-sm-9">-->
-<!--                                        <select class="w-100" th:id="|select-modal-${shiftModel.shiftHistoryId}|">-->
-<!--                                            <option th:value="-1" disabled selected><span th:text="#{select.choose}">Alege</span>-->
-<!--                                            <option th:each="user : ${locationUsers}"-->
-<!--                                                    th:text="${user}"-->
-<!--                                                    th:value="${user}"></option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger mb-0 mr-0" data-dismiss="modal">
-                                        <span>Renunta</span>
-                                    </button>
-                                    <button type="button" class="btn btn-success mb-0 mr-0">
-                                        <span>Salveaza</span>
-                                    </button>
                                 </div>
                             </div>
                         </div>

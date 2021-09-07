@@ -1,5 +1,6 @@
 package com.skeleton.controller;
 
+import com.skeleton.service.BranchService;
 import com.skeleton.service.UserService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserManagementController {
     @NonNull
     private final UserService userService;
+    private final BranchService branchService;
 
     @GetMapping(value = "/list")
     public String getList(final Model model) {
+        model.addAttribute("branchModel", branchService.getBranchModel());
         model.addAttribute("userModel", userService.getUserModelList());
 
         return "userManagement/list";
