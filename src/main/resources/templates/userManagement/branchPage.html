@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Skeleton - User management</title>
+    <head th:replace="fragments/head :: head"></head>
+</head>
+<body>
+<div>
+    <div class="row m-0">
+        <div th:replace="fragments/navbar :: navbar"></div>
+
+        <!-- List content -->
+        <div class="container-fluid mt-50">
+            <div class="full-page-style">
+                <div class="row">
+                    <div class="col-12 px-0">
+                        <div class="card card-border-shadow">
+                            <div class="card-body card-padding">
+                                <a class="btn btn-info">
+                                    <span class="fa fa-plus button-icon"></span>
+                                    <span> Adauga branch </span>
+                                </a>
+
+                                <div class="table-responsive">
+                                    <table class="table" id= "table-id">
+                                        <thead class="thead-color">
+                                            <tr>
+                                                <th class="th-table-style min-width-name">
+                                                    <div th:replace="fragments/sort :: sort(${branchModelPage}, 'name', 'Nume')">Nume</div>
+                                                </th>
+                                                <th class="th-table-style text-center min-width-active">
+                                                    <div th:replace="fragments/sort :: sort(${branchModelPage}, 'active', 'Activ')">Activ</div>
+                                                </th>
+                                                <th class="text-center th-table-style">
+                                                    <span>Actiuni</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tbody-color">
+                                        <tr th:each="branch : ${branchModelPage.content}">
+                                            <td th:text="${branch.getName()}"></td>
+                                            <td class="text-center">
+                                                <span th:class="${branch.active}? 'fa fa-check active' : ' fa fa-times inactive'"></span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="fa fa-edit"></span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 px-0 pt-3">
+                        <div class="d-flex d-inline-flex pull-left ml-5">
+                            <a th:href="@{/}"
+                               class="btn btn-info back-button">
+                                <span class="fa fa-chevron-left button-icon"></span>
+                                <span>INAPOI</span>
+                            </a>
+                            <div th:replace="fragments/pagination :: paginationbar(${branchModelPage})"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+
+    $('#pageSizeSelect').select2({
+        minimumResultsForSearch: Infinity
+    });
+
+    // ]]>
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<div th:fragment='sort(page, row, name)' xmlns:th="http://www.w3.org/1999/xhtml">
+    <div th:switch="${row}">
+        <div th:case="${page.property}">
+            <div th:switch="${page.direction}">
+                <div th:case="'ASC'">
+                    <a th:text="${name}"
+                       th:href="@{${page.url}(page.page=${page.number},page.size=${page.size},sort=${row}+',DESC')}"
+                       class="table-th-color"></a>
+                    <i class="fa fa-chevron-up font-size-11"></i>
+                </div>
+                <div th:case="'DESC'">
+                    <a th:text="${name}"
+                       th:href="@{${page.url}(page.page=${page.number},page.size=${page.size},sort=${row}+',ASC')}"
+                       class="table-th-color"></a>
+                    <i class="fa fa-chevron-down font-size-12"></i>
+                </div>
+            </div>
+        </div>
+        <div th:case="*">
+            <a th:text="${name}"
+               th:href="@{${page.url}(page.page=${page.number},page.size=${page.size},sort=${row}+',ASC')}"
+               class="table-th-color"></a>
+        </div>
+    </div>
+</div>
