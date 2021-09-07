@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Skeleton - User management</title>
+    <head th:replace="fragments/head :: head"></head>
+</head>
+<body>
+<div>
+    <div class="row m-0">
+        <div th:replace="fragments/navbar :: navbar"></div>
+
+        <!-- List content -->
+        <div class="container-fluid mt-50">
+            <div class="full-page-style">
+                <div class="row mt-200">
+                    <div class="col-4">
+                        <a th:href="@{/userManagement/branchList}">
+                            <div class="card border-primary mb-3 mx-auto card-hover" style="max-width: 18rem;">
+                                <div class="card-header fa-style">
+                                    <span class="fa fa-university"></span>
+                                </div>
+                                <div class="card-body text-primary center-content">
+                                    <h5 class="card-title">Administreaza branch-uri</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">
+                            <div class="card border-primary mb-3 mx-auto card-hover" style="max-width: 18rem;">
+                                <div class="card-header fa-style">
+                                    <span class="fa fa-map-marker"></span>
+                                </div>
+                                <div class="card-body text-primary center-content">
+                                    <h5 class="card-title">Administreaza locatii</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">
+                            <div class="card border-primary mb-3 mx-auto card-hover" style="max-width: 18rem;">
+                                <div class="card-header fa-style">
+                                    <span class="fa fa-user"></span>
+                                </div>
+                                <div class="card-body text-primary center-content">
+                                    <h5 class="card-title">Administreaza useri</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

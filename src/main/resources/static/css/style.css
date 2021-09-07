@@ -160,3 +160,12 @@ a:hover {
     color: #1C4C5F;
     font-size: 14px;
 }
+
+.mt-200 {
+    margin-top: 200px;
+}
+
+.fa-style {
+    text-align: center;
+    font-size: 50px;
+}
