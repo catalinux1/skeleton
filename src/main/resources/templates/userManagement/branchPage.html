@@ -17,25 +17,25 @@
                     <div class="col-12 px-0">
                         <div class="card card-border-shadow">
                             <div class="card-body card-padding">
-                                <a class="btn btn-info">
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addBranchModal">
                                     <span class="fa fa-plus button-icon"></span>
                                     <span> Adauga branch </span>
-                                </a>
+                                </button>
 
                                 <div class="table-responsive">
-                                    <table class="table" id= "table-id">
+                                    <table class="table" id="table-id">
                                         <thead class="thead-color">
-                                            <tr>
-                                                <th class="th-table-style min-width-name">
-                                                    <div>Nume</div>
-                                                </th>
-                                                <th class="th-table-style text-center min-width-active">
-                                                    <div>Activ</div>
-                                                </th>
-                                                <th class="text-center th-table-style">
-                                                    <span>Actiuni</span>
-                                                </th>
-                                            </tr>
+                                        <tr>
+                                            <th class="th-table-style min-width-name">
+                                                <div>Nume</div>
+                                            </th>
+                                            <th class="th-table-style text-center min-width-active">
+                                                <div>Activ</div>
+                                            </th>
+                                            <th class="text-center th-table-style">
+                                                <span>Actiuni</span>
+                                            </th>
+                                        </tr>
                                         </thead>
                                         <tbody class="tbody-color">
                                         <tr th:each="branch : ${branchPage.page}">
@@ -49,6 +49,36 @@
                                         </tr>
                                         </tbody>
                                     </table>
+
+                                    <!--Add modal-->
+                                    <div class="modal fade" id="addBranchModal" tabindex="-1" role="dialog"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <form th:action="@{/userManagement/addBranch}" method="post">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Adauga un branch nou</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                            <div class="form-group">
+                                                                <label for="recipient-name" class="col-form-label">Nume:</label>
+                                                                <input type="text" class="form-control" id="recipient-name" name="name">
+                                                            </div>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Inchide</button>
+                                                        <button type="submit" class="btn btn-primary">Adauga</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -58,22 +88,28 @@
                 <div class="row">
                     <nav aria-label="Page navigation" class="paging mt-3">
                         <ul class="pagination" th:if="${branchPage.page.totalPages > 1}">
-                            <li class="page-item" th:classappend="${!branchPage.paging.isPrevEnabled()? 'disabled' : ''}">
-                                <a class="page-link" th:href="@{'/userManagement/branchPage?pageNumber=' + ${branchPage.paging.pageNumber - 1}}"
+                            <li class="page-item"
+                                th:classappend="${!branchPage.paging.isPrevEnabled()? 'disabled' : ''}">
+                                <a class="page-link"
+                                   th:href="@{'/userManagement/branchPage?pageNumber=' + ${branchPage.paging.pageNumber - 1}}"
                                    tabindex="-1">Inainte</a>
                             </li>
                             <th:block th:each="item : ${branchPage.paging.getItems()}">
-                                <li class="page-item" th:classappend="${item.index == branchPage.paging.pageNumber? 'active' : ''}"
+                                <li class="page-item"
+                                    th:classappend="${item.index == branchPage.paging.pageNumber? 'active' : ''}"
                                     th:if="${item.pageItemType.name() == 'PAGE'}">
-                                    <a class="page-link" th:href="@{'/userManagement/branchPage?pageNumber=' + ${item.index}}"
+                                    <a class="page-link"
+                                       th:href="@{'/userManagement/branchPage?pageNumber=' + ${item.index}}"
                                        th:text="${item.index}"></a>
                                 </li>
                                 <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
                                     <a class="page-link" href="#">...</a>
                                 </li>
                             </th:block>
-                            <li class="page-item" th:classappend="${!branchPage.paging.isNextEnabled()? 'disabled' : ''}">
-                                <a class="page-link" th:href="@{'/userManagement/branchPage?pageNumber=' + ${branchPage.paging.pageNumber + 1}}">Urmatoarea</a>
+                            <li class="page-item"
+                                th:classappend="${!branchPage.paging.isNextEnabled()? 'disabled' : ''}">
+                                <a class="page-link"
+                                   th:href="@{'/userManagement/branchPage?pageNumber=' + ${branchPage.paging.pageNumber + 1}}">Urmatoarea</a>
                             </li>
                         </ul>
                     </nav>

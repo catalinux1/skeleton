@@ -1,14 +1,13 @@
 package com.skeleton.controller;
 
+import com.skeleton.model.BranchModel;
 import com.skeleton.service.BranchService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Slf4j
@@ -31,5 +30,11 @@ public class UserManagementController {
         model.addAttribute("branchPage", branchService.getBranchPage(pageNumber, size));
 
         return "userManagement/branchPage";
+    }
+
+    @RequestMapping(value = "/addBranch", method = RequestMethod.POST)
+    public String addBranch(@ModelAttribute("branchModel") final BranchModel branch) {
+        System.out.println("salutare");
+        return "redirect:/userManagement/addBranch";
     }
 }
