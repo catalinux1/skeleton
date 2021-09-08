@@ -27,10 +27,10 @@
                                         <thead class="thead-color">
                                             <tr>
                                                 <th class="th-table-style min-width-name">
-                                                    <div th:replace="fragments/sort :: sort(${branchModelPage}, 'name', 'Nume')">Nume</div>
+                                                    <div>Nume</div>
                                                 </th>
                                                 <th class="th-table-style text-center min-width-active">
-                                                    <div th:replace="fragments/sort :: sort(${branchModelPage}, 'active', 'Activ')">Activ</div>
+                                                    <div>Activ</div>
                                                 </th>
                                                 <th class="text-center th-table-style">
                                                     <span>Actiuni</span>
@@ -38,7 +38,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="tbody-color">
-                                        <tr th:each="branch : ${branchModelPage.content}">
+                                        <tr th:each="branch : ${branchPage.page}">
                                             <td th:text="${branch.getName()}"></td>
                                             <td class="text-center">
                                                 <span th:class="${branch.active}? 'fa fa-check active' : ' fa fa-times inactive'"></span>
@@ -54,30 +54,44 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
-                    <div class="col-12 px-0 pt-3">
-                        <div class="d-flex d-inline-flex pull-left ml-5">
-                            <a th:href="@{/}"
+                    <nav aria-label="Page navigation" class="paging mt-3">
+                        <ul class="pagination" th:if="${branchPage.page.totalPages > 1}">
+                            <li class="page-item" th:classappend="${!branchPage.paging.isPrevEnabled()? 'disabled' : ''}">
+                                <a class="page-link" th:href="@{'/userManagement/branchPage?pageNumber=' + ${branchPage.paging.pageNumber - 1}}"
+                                   tabindex="-1">Inainte</a>
+                            </li>
+                            <th:block th:each="item : ${branchPage.paging.getItems()}">
+                                <li class="page-item" th:classappend="${item.index == branchPage.paging.pageNumber? 'active' : ''}"
+                                    th:if="${item.pageItemType.name() == 'PAGE'}">
+                                    <a class="page-link" th:href="@{'/userManagement/branchPage?pageNumber=' + ${item.index}}"
+                                       th:text="${item.index}"></a>
+                                </li>
+                                <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+                                    <a class="page-link" href="#">...</a>
+                                </li>
+                            </th:block>
+                            <li class="page-item" th:classappend="${!branchPage.paging.isNextEnabled()? 'disabled' : ''}">
+                                <a class="page-link" th:href="@{'/userManagement/branchPage?pageNumber=' + ${branchPage.paging.pageNumber + 1}}">Urmatoarea</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <div class="col-12 px-0">
+                        <div class="d-flex d-inline-flex pull-right ml-5">
+                            <a th:href="@{/userManagement/dashboard}"
                                class="btn btn-info back-button">
                                 <span class="fa fa-chevron-left button-icon"></span>
                                 <span>INAPOI</span>
                             </a>
-                            <div th:replace="fragments/pagination :: paginationbar(${branchModelPage})"></div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script type="text/javascript" th:inline="javascript">
-    /*<![CDATA[*/
-
-    $('#pageSizeSelect').select2({
-        minimumResultsForSearch: Infinity
-    });
-
-    // ]]>
-</script>
 </body>
 </html>

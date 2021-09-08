@@ -4,14 +4,11 @@ import com.skeleton.service.BranchService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @Slf4j
@@ -28,10 +25,10 @@ public class UserManagementController {
     }
 
     @GetMapping(value = "/branchPage")
-    public String getBranchPage(final Model model,
-                                @SortDefault(sort = "name", direction = Sort.Direction.ASC)
-                                @PageableDefault(size = 10) final Pageable pageable) {
-        model.addAttribute("branchModelPage", branchService.getBranchModelPage(pageable));
+    public String getBranchPage(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
+                                @RequestParam(value = "size", required = false, defaultValue = "10") int size,
+                                Model model) {
+        model.addAttribute("branchPage", branchService.getBranchPage(pageNumber, size));
 
         return "userManagement/branchPage";
     }
