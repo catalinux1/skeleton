@@ -7,7 +7,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @Slf4j
@@ -32,9 +35,15 @@ public class UserManagementController {
         return "userManagement/branchPage";
     }
 
-    @RequestMapping(value = "/addBranch", method = RequestMethod.POST)
-    public String addBranch(@ModelAttribute("branchModel") final BranchModel branch) {
-        System.out.println("salutare");
-        return "redirect:/userManagement/addBranch";
+    @PostMapping(value = "/addBranch")
+    public String addBranch(@Valid @ModelAttribute("branchModel") final BranchModel branchModel,
+                            final BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "userManagement/branchPage";
+        }
+
+        branchService.saveBranchModel(branchModel);
+
+        return "redirect:/userManagement/branchPage";
     }
 }

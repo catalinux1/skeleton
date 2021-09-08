@@ -17,7 +17,8 @@
                     <div class="col-12 px-0">
                         <div class="card card-border-shadow">
                             <div class="card-body card-padding">
-                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addBranchModal">
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                        data-target="#addBranchModal">
                                     <span class="fa fa-plus button-icon"></span>
                                     <span> Adauga branch </span>
                                 </button>
@@ -53,25 +54,33 @@
                                     <!--Add modal-->
                                     <div class="modal fade" id="addBranchModal" tabindex="-1" role="dialog"
                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <form th:action="@{/userManagement/addBranch}" method="post">
+                                        <form th:action="@{/userManagement/addBranch}" th:method="post">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Adauga un branch nou</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Adauga un branch
+                                                            nou</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-
-                                                            <div class="form-group">
-                                                                <label for="recipient-name" class="col-form-label">Nume:</label>
-                                                                <input type="text" class="form-control" id="recipient-name" name="name">
+                                                        <div class="form-group">
+                                                            <label class="col-form-label">Nume</label>
+                                                            <input type="text" class="form-control" name="name">
+                                                        </div>
+                                                        <div class="form-group form-inline">
+                                                            <div class="form-check">
+                                                                <label class="col-form-label">Activ</label>
+                                                                <input name="active" type="checkbox" class="form-check-input ml-3"checked>
                                                             </div>
-
+                                                        </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Inchide</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Inchide
+                                                        </button>
                                                         <button type="submit" class="btn btn-primary">Adauga</button>
                                                     </div>
                                                 </div>
