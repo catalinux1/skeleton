@@ -1,8 +1,6 @@
 package com.skeleton.service;
 
 import com.skeleton.entity.Branch;
-import com.skeleton.mapper.BranchMapper;
-import com.skeleton.model.BranchModel;
 import com.skeleton.repository.BranchRepository;
 import com.skeleton.util.Paged;
 import com.skeleton.util.Paging;
@@ -28,9 +26,5 @@ public class BranchService {
         Page<Branch> branchPage = branchRepository.findAll(request);
 
         return new Paged<>(branchPage, Paging.of(branchPage.getTotalPages(), pageNumber, size));
-    }
-
-    public void saveBranchModel(final BranchModel branchModel) {
-        branchRepository.save(BranchMapper.modelToEntity(branchModel));
     }
 }
