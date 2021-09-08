@@ -22,7 +22,7 @@
                                     <span class="fa fa-plus button-icon"></span>
                                     <span> Adauga branch </span>
                                 </button>
-                                <div th:if="${error}" style="color: red">test</div>
+                                <div th:if="${errorName}" class="red-color mt-3 ml-3">Eroare! Numele branch-ului trebuie sa fie intre 2 si 255 de caractere!</div>
                                 <div class="table-responsive">
                                     <table class="table" id="table-id">
                                         <thead class="thead-color">
@@ -58,8 +58,7 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Adauga un branch
-                                                            nou</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Adauga un branch nou</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>

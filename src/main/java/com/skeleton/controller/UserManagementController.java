@@ -40,7 +40,7 @@ public class UserManagementController {
     public String addBranch(@Valid @ModelAttribute("branchModel") final BranchModel branchModel,
                             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-           redirectAttributes.addFlashAttribute("error", true);
+           redirectAttributes.addFlashAttribute("errorName", true);
         } else {
             branchService.saveBranchModel(branchModel);
         }
