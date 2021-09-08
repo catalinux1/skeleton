@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -37,12 +38,12 @@ public class UserManagementController {
 
     @PostMapping(value = "/addBranch")
     public String addBranch(@Valid @ModelAttribute("branchModel") final BranchModel branchModel,
-                            final BindingResult bindingResult) {
+                            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return "userManagement/branchPage";
+           redirectAttributes.addFlashAttribute("error", true);
+        } else {
+            branchService.saveBranchModel(branchModel);
         }
-
-        branchService.saveBranchModel(branchModel);
 
         return "redirect:/userManagement/branchPage";
     }
