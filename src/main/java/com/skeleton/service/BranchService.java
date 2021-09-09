@@ -30,13 +30,18 @@ public class BranchService {
         return new Paged<>(branchPage, Paging.of(branchPage.getTotalPages(), pageNumber, size));
     }
 
-    public BranchModel getBranchModelById(final Long branchId) {
+    public BranchModel getBranchModelById(final Long id) {
         BranchModel branchModel = new BranchModel();
-        Branch branch = branchRepository.findById(branchId).orElse(null);
+        Branch branch = branchRepository.findById(id).orElse(null);
         if(branch != null) {
             branchModel = BranchMapper.entityToModel(branch);
         }
 
         return branchModel;
+    }
+
+    public void saveBranch(final BranchModel branchModel) {
+        Branch branch = BranchMapper.modelToEntity(branchModel);
+        branchRepository.save(branch);
     }
 }

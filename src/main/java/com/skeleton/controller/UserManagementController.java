@@ -1,15 +1,16 @@
 package com.skeleton.controller;
 
+import com.skeleton.model.BranchModel;
 import com.skeleton.service.BranchService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @Slf4j
@@ -34,10 +35,22 @@ public class UserManagementController {
         return "userManagement/branch/list";
     }
 
-    @GetMapping(value = "/branch/form/{branchId}")
-    public String getBranchForm(@PathVariable final Long branchId, final Model model) {
-        model.addAttribute("branchModel", branchService.getBranchModelById(branchId));
+    @GetMapping(value = "/branch/form/{id}")
+    public String getBranchForm(@PathVariable final Long id, final Model model) {
+        model.addAttribute("branchModel", branchService.getBranchModelById(id));
 
         return "userManagement/branch/form";
+    }
+
+    @PostMapping(value = "/branch/form/{id}")
+    public String saveBranchForm(@PathVariable final Long id,
+                                 @Valid @ModelAttribute("branchModel") final BranchModel branchModel,
+                                 BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "userManagement/branch/form";
+        }
+        branchService.saveBranch(branchModel);
+
+        return "redirect:/userManagement/branch/list";
     }
 }

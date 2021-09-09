@@ -18,7 +18,7 @@ public class BranchMapper {
 
     public static Branch modelToEntity(final BranchModel branchModel) {
         final Branch branch = Branch.builder()
-                .id(branchModel.getId() != null ? branchModel.getId() : null)
+                .id(branchModel.getId() != 0 ? branchModel.getId() : null)
                 .name(branchModel.getName())
                 .active(branchModel.getActive())
                 .build();
