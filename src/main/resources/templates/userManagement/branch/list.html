@@ -17,10 +17,14 @@
                     <div class="col-12 px-0">
                         <div class="card card-border-shadow">
                             <div class="card-body card-padding">
-                                <a href="#" type="button" class="btn btn-info back-button">
-                                    <span class="fa fa-plus button-icon"></span>
-                                    <span> Adauga branch </span>
-                                </a>
+                                <div>
+                                    <i class="fa fa-university infoHeadTitle"></i>
+                                    <span class="title infoHeadTitle">Branch-uri</span>
+                                    <a th:href="@{/userManagement/branch/form/0}" type="button" class="btn btn-info back-button pull-right">
+                                        <span class="fa fa-plus button-icon"></span>
+                                        <span> Adauga branch </span>
+                                    </a>
+                                </div>
                                 <div class="table-responsive">
                                     <table class="table" id="table-id">
                                         <thead class="thead-color">
@@ -43,7 +47,7 @@
                                                 <span th:class="${branch.active}? 'fa fa-check active' : ' fa fa-times inactive'"></span>
                                             </td>
                                             <td class="text-center">
-                                                <a th:href="@{/userManagement/getBranchById/(id=${branch.id})}" class="btn btn-sm btn-warning">
+                                                <a th:href="@{/userManagement/branch/form/__${branch.id}__}" class="btn btn-sm btn-warning">
                                                     <span class="fa fa-pencil"></span>
                                                 </a>
                                             </td>
@@ -94,7 +98,6 @@
                             </a>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
