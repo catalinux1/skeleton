@@ -29,13 +29,14 @@ public class UserManagementController {
     public String getBranchList(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
                                 @RequestParam(value = "size", required = false, defaultValue = "10") int size,
                                 Model model) {
-        model.addAttribute("branchPage", branchService.getBranchPage(pageNumber, size));
+        model.addAttribute("branchModel", branchService.getBranchPage(pageNumber, size));
 
         return "userManagement/branch/list";
     }
 
     @GetMapping(value = "/branch/form/{branchId}")
-    public String getBranchForm(@PathVariable final Long branchId) {
+    public String getBranchForm(@PathVariable final Long branchId, final Model model) {
+        model.addAttribute("branchModel", branchService.getBranchModelById(branchId));
 
         return "userManagement/branch/form";
     }
