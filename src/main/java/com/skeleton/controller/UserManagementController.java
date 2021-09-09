@@ -19,6 +19,8 @@ import javax.validation.Valid;
 public class UserManagementController {
     @NonNull
     private final BranchService branchService;
+//    @NonNull
+//    private final LocationService locationService;
 
     @GetMapping(value = "/dashboard")
     public String getList() {
@@ -52,5 +54,14 @@ public class UserManagementController {
         branchService.saveBranch(branchModel);
 
         return "redirect:/userManagement/branch/list";
+    }
+
+    @GetMapping(value = "/location/list")
+    public String getLocationList(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
+                                @RequestParam(value = "size", required = false, defaultValue = "10") int size,
+                                Model model) {
+//        model.addAttribute("branchModel", locationService.getBranchPage(pageNumber, size));
+
+        return "userManagement/branch/list";
     }
 }
