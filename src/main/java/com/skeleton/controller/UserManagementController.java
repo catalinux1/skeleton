@@ -2,6 +2,7 @@ package com.skeleton.controller;
 
 import com.skeleton.model.BranchModel;
 import com.skeleton.service.BranchService;
+import com.skeleton.service.LocationService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +20,8 @@ import javax.validation.Valid;
 public class UserManagementController {
     @NonNull
     private final BranchService branchService;
-//    @NonNull
-//    private final LocationService locationService;
+    @NonNull
+    private final LocationService locationService;
 
     @GetMapping(value = "/dashboard")
     public String getList() {
@@ -60,8 +61,15 @@ public class UserManagementController {
     public String getLocationList(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
                                 @RequestParam(value = "size", required = false, defaultValue = "10") int size,
                                 Model model) {
-//        model.addAttribute("branchModel", locationService.getBranchPage(pageNumber, size));
+        model.addAttribute("locationModel", locationService.getLocationPage(pageNumber, size));
 
-        return "userManagement/branch/list";
+        return "userManagement/location/list";
+    }
+
+    @GetMapping(value = "/location/form/{id}")
+    public String getLocationForm(@PathVariable final Long id, final Model model) {
+        model.addAttribute("locationModel", locationService.getLocationModelById(id));
+
+        return "userManagement/location/form";
     }
 }

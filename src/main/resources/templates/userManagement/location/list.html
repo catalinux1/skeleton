@@ -19,10 +19,10 @@
                             <div class="card-body card-padding">
                                 <div>
                                     <i class="fa fa-university infoHeadTitle"></i>
-                                    <span class="title infoHeadTitle">Branch-uri</span>
-                                    <a th:href="@{/userManagement/branch/form/0}" type="button" class="btn btn-primary pull-right">
+                                    <span class="title infoHeadTitle">Locatii</span>
+                                    <a th:href="@{/userManagement/list/form/0}" type="button" class="btn btn-primary pull-right">
                                         <span class="fa fa-plus button-icon"></span>
-                                        <span> Adauga branch </span>
+                                        <span> Adauga locatie </span>
                                     </a>
                                 </div>
                                 <div class="table-responsive">
@@ -30,7 +30,10 @@
                                         <thead class="thead-color">
                                         <tr>
                                             <th class="th-table-style min-width-name">
-                                                <div>Denumire</div>
+                                                <div>Locatie</div>
+                                            </th>
+                                            <th class="th-table-style min-width-name">
+                                                <div>Branch</div>
                                             </th>
                                             <th class="th-table-style text-center min-width-active">
                                                 <div>Activ</div>
@@ -41,13 +44,13 @@
                                         </tr>
                                         </thead>
                                         <tbody class="tbody-color">
-                                        <tr th:each="branch : ${branchModel.page}">
-                                            <td th:text="${branch.getName()}"></td>
+                                        <tr th:each="location : ${locationModel.page}">
+                                            <td th:text="${location.getName()}"></td>
                                             <td class="text-center">
-                                                <span th:class="${branch.active}? 'fa fa-check active' : ' fa fa-times inactive'"></span>
+                                                <span th:class="${location.active}? 'fa fa-check active' : ' fa fa-times inactive'"></span>
                                             </td>
                                             <td class="text-center">
-                                                <a th:href="@{/userManagement/branch/form/__${branch.id}__}" class="btn btn-sm btn-warning">
+                                                <a th:href="@{/userManagement/location/form/__${location.id}__}" class="btn btn-sm btn-warning">
                                                     <span class="fa fa-pencil"></span>
                                                 </a>
                                             </td>
@@ -62,16 +65,16 @@
 
                 <div class="row">
                     <nav aria-label="Page navigation" class="paging mt-3">
-                        <ul class="pagination" th:if="${branchModel.page.totalPages > 1}">
+                        <ul class="pagination" th:if="${locationModel.page.totalPages > 1}">
                             <li class="page-item"
-                                th:classappend="${!branchModel.paging.isPrevEnabled()? 'disabled' : ''}">
+                                th:classappend="${!locationModel.paging.isPrevEnabled()? 'disabled' : ''}">
                                 <a class="page-link"
-                                   th:href="@{'/userManagement/branch/list?pageNumber=' + ${branchModel.paging.pageNumber - 1}}"
+                                   th:href="@{'/userManagement/branch/list?pageNumber=' + ${locationModel.paging.pageNumber - 1}}"
                                    tabindex="-1">Inainte</a>
                             </li>
-                            <th:block th:each="item : ${branchModel.paging.getItems()}">
+                            <th:block th:each="item : ${locationModel.paging.getItems()}">
                                 <li class="page-item"
-                                    th:classappend="${item.index == branchModel.paging.pageNumber? 'active' : ''}"
+                                    th:classappend="${item.index == locationModel.paging.pageNumber? 'active' : ''}"
                                     th:if="${item.pageItemType.name() == 'PAGE'}">
                                     <a class="page-link"
                                        th:href="@{'/userManagement/branch/list?pageNumber=' + ${item.index}}"
@@ -82,9 +85,9 @@
                                 </li>
                             </th:block>
                             <li class="page-item"
-                                th:classappend="${!branchModel.paging.isNextEnabled()? 'disabled' : ''}">
+                                th:classappend="${!locationModel.paging.isNextEnabled()? 'disabled' : ''}">
                                 <a class="page-link"
-                                   th:href="@{'/userManagement/branch/list?pageNumber=' + ${branchModel.paging.pageNumber + 1}}">Urmatoarea</a>
+                                   th:href="@{'/userManagement/branch/list?pageNumber=' + ${locationModel.paging.pageNumber + 1}}">Urmatoarea</a>
                             </li>
                         </ul>
                     </nav>
