@@ -20,7 +20,7 @@
                                 <div>
                                     <i class="fa fa-university infoHeadTitle"></i>
                                     <span class="title infoHeadTitle">Locatii</span>
-                                    <a th:href="@{/userManagement/list/form/0}" type="button" class="btn btn-primary pull-right">
+                                    <a th:href="@{/userManagement/location/form/0}" type="button" class="btn btn-primary pull-right">
                                         <span class="fa fa-plus button-icon"></span>
                                         <span> Adauga locatie </span>
                                     </a>
@@ -46,6 +46,7 @@
                                         <tbody class="tbody-color">
                                         <tr th:each="location : ${locationModel.page}">
                                             <td th:text="${location.getName()}"></td>
+                                            <td th:text="${location.branch.name}"></td>
                                             <td class="text-center">
                                                 <span th:class="${location.active}? 'fa fa-check active' : ' fa fa-times inactive'"></span>
                                             </td>

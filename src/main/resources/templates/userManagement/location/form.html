@@ -19,24 +19,37 @@
                                 <div>
                                     <i class="fa fa-university infoHeadTitle"></i>
                                     <span class="title infoHeadTitle"
-                                          th:text="${id} != 0 ? 'Editeaza branch' : 'Adauga branch nou'"></span>
+                                          th:text="${id} != 0 ? 'Editeaza locatie' : 'Adauga locatie noua'"></span>
                                 </div>
                                 <div class="row ml-1 mt-5">
                                     <div class="col-12">
                                         <form id="submit-form"
                                               class="form-horizontal"
-                                              th:object="${branchModel}"
+                                              th:object="${locationModel}"
                                               th:method="post"
-                                              th:action="@{/userManagement/branch/form/__${id}__}"
+                                              th:action="@{/userManagement/location/form/__${id}__}"
                                               autocomplete="off">
                                             <div class="form-group"
                                                  th:method="post">
-                                                <label for="Name">Nume</label><span class="red-color">*</span>
+                                                <label for="Name">Denumire</label><span class="red-color">*</span>
                                                 <input type="text" th:field="*{name}"
                                                        class="form-control col-lg-3 col-md-12" id="Name">
                                             </div>
                                             <div class="mb-3">
                                                 <div class="red-color font-size-16" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Branch</label>
+                                                <div class="col-lg-3 col-md-12 ml-minus-15">
+                                                <select id="location-select" class="form-control" th:field="*{branchId}">
+                                                    <option value="">
+                                                        <span>Selecteaza</span>
+                                                    </option>
+                                                    <option th:each="brach : ${branchList}" th:value="${brach.id}">
+                                                        <span th:text="${brach.name}"></span>
+                                                    </option>
+                                                </select>
+                                                </div>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
@@ -56,7 +69,7 @@
 
                 <div class="col-12 px-0 mt-3">
                     <div class="d-flex d-inline-flex pull-right ml-5">
-                        <a th:href="@{/userManagement/branch/list}" type="button" class="btn btn-primary pull-right">
+                        <a th:href="@{/userManagement/location/list}" type="button" class="btn btn-primary pull-right">
                             <span class="fa fa-chevron-left button-icon"></span>
                             <span> INAPOI </span>
                         </a>
@@ -69,10 +82,15 @@
 </div>
 <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
-    let branchId = [[${branchModel.id}]];
-    if (branchId === null) {
+    let locationId = [[${locationModel.id}]];
+    if (locationId === null) {
         $('#default-checked').prop('checked', true);
     }
+
+    $('#location-select').select2({
+        minimumResultsForSearch: -1
+    });
+
     // ]]>
 </script>
 </body>

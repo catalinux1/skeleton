@@ -15,6 +15,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -43,5 +46,11 @@ public class BranchService {
     public void saveBranch(final BranchModel branchModel) {
         Branch branch = BranchMapper.modelToEntity(branchModel);
         branchRepository.save(branch);
+    }
+
+    public List<BranchModel> getAllActive() {
+        return branchRepository.findByActiveTrue().stream()
+                .map(BranchMapper::entityToModel)
+                .collect(Collectors.toList());
     }
 }

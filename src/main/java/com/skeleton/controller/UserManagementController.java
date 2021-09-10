@@ -68,6 +68,7 @@ public class UserManagementController {
 
     @GetMapping(value = "/location/form/{id}")
     public String getLocationForm(@PathVariable final Long id, final Model model) {
+        model.addAttribute("branchList", branchService.getAllActive());
         model.addAttribute("locationModel", locationService.getLocationModelById(id));
 
         return "userManagement/location/form";

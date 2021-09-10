@@ -195,3 +195,7 @@ a:hover {
     font-size: 27px;
     margin-left: 20px;
 }
+
+.ml-minus-15 {
+    margin-left: -15px;
+}
