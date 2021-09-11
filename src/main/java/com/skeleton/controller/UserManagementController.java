@@ -1,6 +1,7 @@
 package com.skeleton.controller;
 
 import com.skeleton.model.BranchModel;
+import com.skeleton.model.LocationModel;
 import com.skeleton.service.BranchService;
 import com.skeleton.service.LocationService;
 import lombok.NonNull;
@@ -72,5 +73,17 @@ public class UserManagementController {
         model.addAttribute("locationModel", locationService.getLocationModelById(id));
 
         return "userManagement/location/form";
+    }
+
+    @PostMapping(value = "/location/form/{id}")
+    public String saveLocationForm(@PathVariable final Long id,
+                                   @Valid @ModelAttribute("locationModel") final LocationModel locationModel,
+                                   BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            return "userManagement/location/form";
+        }
+        locationService.save(locationModel);
+
+        return "redirect:/userManagement/location/list";
     }
 }

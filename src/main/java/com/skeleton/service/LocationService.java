@@ -39,4 +39,8 @@ public class LocationService {
         }
         return locationModel;
     }
+
+    public void save(final LocationModel locationModel) {
+
+    }
 }
