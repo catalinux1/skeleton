@@ -51,14 +51,17 @@
                                                 </select>
                                                 </div>
                                             </div>
+                                            <div class="mb-3">
+                                                <div class="red-color font-size-16" th:if="${#fields.hasErrors('branchId')}" th:errors="*{branchId}"></div>
+                                            </div>
                                             <div class="checkbox">
                                                 <label>
                                                     <input th:id="${id == 0} ? 'default-checked' : ''"
                                                            th:field="*{active}"
-                                                           type="checkbox" id="yesno"> Activ
+                                                           type="checkbox"> Activ
                                                 </label>
                                             </div>
-                                            <button type="submit" class="btn btn-primary">Salveaza</button>
+                                            <button type="submit" class="btn btn-primary mt-3">Salveaza</button>
                                         </form>
                                     </div>
                                 </div>

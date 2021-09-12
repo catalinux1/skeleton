@@ -78,8 +78,10 @@ public class UserManagementController {
     @PostMapping(value = "/location/form/{id}")
     public String saveLocationForm(@PathVariable final Long id,
                                    @Valid @ModelAttribute("locationModel") final LocationModel locationModel,
-                                   BindingResult bindingResult) {
+                                   BindingResult bindingResult, final Model model) {
         if(bindingResult.hasErrors()) {
+            model.addAttribute("branchList", branchService.getAllActive());
+
             return "userManagement/location/form";
         }
         locationService.save(locationModel);

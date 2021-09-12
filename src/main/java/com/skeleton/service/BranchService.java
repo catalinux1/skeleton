@@ -44,7 +44,8 @@ public class BranchService {
     }
 
     public void saveBranch(final BranchModel branchModel) {
-        Branch branch = BranchMapper.modelToEntity(branchModel);
+        final Branch savedBranch = branchRepository.findById(branchModel.getId()).orElse(null);
+        final Branch branch = BranchMapper.modelToEntity(branchModel, savedBranch);
         branchRepository.save(branch);
     }
 

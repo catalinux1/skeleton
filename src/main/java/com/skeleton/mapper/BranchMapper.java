@@ -16,15 +16,17 @@ public class BranchMapper {
                 .build();
     }
 
-    public static Branch modelToEntity(final BranchModel branchModel) {
+    public static Branch modelToEntity(final BranchModel branchModel, final Branch savedBranch) {
         final Branch branch = Branch.builder()
                 .id(branchModel.getId() != 0 ? branchModel.getId() : null)
                 .name(branchModel.getName())
                 .active(branchModel.getActive())
                 .build();
 
-        branch.setCreatedBy(branchModel.getCreatedBy());
-        branch.setCreatedDate(branchModel.getCreatedDate());
+        if (savedBranch != null) {
+            branch.setCreatedBy(savedBranch.getCreatedBy());
+            branch.setCreatedDate(savedBranch.getCreatedDate());
+        }
 
         return branch;
     }
