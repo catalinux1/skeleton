@@ -19,10 +19,10 @@
                             <div class="card-body card-padding">
                                 <div>
                                     <i class="fa fa-university infoHeadTitle"></i>
-                                    <span class="title infoHeadTitle">Locatii</span>
-                                    <a th:href="@{/userManagement/location/form/0}" type="button" class="btn btn-primary pull-right">
+                                    <span class="title infoHeadTitle">Branch-uri</span>
+                                    <a th:href="@{/userManagement/user/form/0}" type="button" class="btn btn-primary pull-right">
                                         <span class="fa fa-plus button-icon"></span>
-                                        <span> Adauga locatie </span>
+                                        <span> Adauga user </span>
                                     </a>
                                 </div>
                                 <div class="table-responsive">
@@ -30,10 +30,19 @@
                                         <thead class="thead-color">
                                         <tr>
                                             <th class="th-table-style min-width-name">
-                                                <div>Locatie</div>
+                                                <div>Nume</div>
                                             </th>
                                             <th class="th-table-style min-width-name">
-                                                <div>Branch</div>
+                                                <div>Prenume</div>
+                                            </th>
+                                            <th class="th-table-style min-width-name">
+                                                <div>Email</div>
+                                            </th>
+                                            <th class="th-table-style min-width-name">
+                                                <div>Roluri</div>
+                                            </th>
+                                            <th class="th-table-style min-width-name">
+                                                <div>Locatii</div>
                                             </th>
                                             <th class="th-table-style text-center min-width-active">
                                                 <div>Activ</div>
@@ -44,14 +53,17 @@
                                         </tr>
                                         </thead>
                                         <tbody class="tbody-color">
-                                        <tr th:each="location : ${locationModel.page}">
-                                            <td th:text="${location.getName()}"></td>
-                                            <td th:text="${location.branch.name}"></td>
+                                        <tr th:each="user : ${userModel.page}">
+                                            <td th:text="${user.getLastName()}"></td>
+                                            <td th:text="${user.getFirstName()}"></td>
+                                            <td th:text="${user.getEmail()}"></td>
+                                            <td></td>
+                                            <td></td>
                                             <td class="text-center">
-                                                <span th:class="${location.active}? 'fa fa-check active' : ' fa fa-times inactive'"></span>
+                                                <span th:class="${user.active}? 'fa fa-check active' : ' fa fa-times inactive'"></span>
                                             </td>
                                             <td class="text-center">
-                                                <a th:href="@{/userManagement/location/form/__${location.id}__}" class="btn btn-sm btn-warning">
+                                                <a th:href="@{/userManagement/user/form/__${user.id}__}" class="btn btn-sm btn-warning">
                                                     <span class="fa fa-pencil"></span>
                                                 </a>
                                             </td>
@@ -66,19 +78,19 @@
 
                 <div class="row">
                     <nav aria-label="Page navigation" class="paging mt-3">
-                        <ul class="pagination" th:if="${locationModel.page.totalPages > 1}">
+                        <ul class="pagination" th:if="${userModel.page.totalPages > 1}">
                             <li class="page-item"
-                                th:classappend="${!locationModel.paging.isPrevEnabled()? 'disabled' : ''}">
+                                th:classappend="${!userModel.paging.isPrevEnabled()? 'disabled' : ''}">
                                 <a class="page-link"
-                                   th:href="@{'/userManagement/location/list?pageNumber=' + ${locationModel.paging.pageNumber - 1}}"
+                                   th:href="@{'/userManagement/user/list?pageNumber=' + ${userModel.paging.pageNumber - 1}}"
                                    tabindex="-1">Inainte</a>
                             </li>
-                            <th:block th:each="item : ${locationModel.paging.getItems()}">
+                            <th:block th:each="item : ${userModel.paging.getItems()}">
                                 <li class="page-item"
-                                    th:classappend="${item.index == locationModel.paging.pageNumber? 'active' : ''}"
+                                    th:classappend="${item.index == userModel.paging.pageNumber? 'active' : ''}"
                                     th:if="${item.pageItemType.name() == 'PAGE'}">
                                     <a class="page-link"
-                                       th:href="@{'/userManagement/location/list?pageNumber=' + ${item.index}}"
+                                       th:href="@{'/userManagement/user/list?pageNumber=' + ${item.index}}"
                                        th:text="${item.index}"></a>
                                 </li>
                                 <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
@@ -86,9 +98,9 @@
                                 </li>
                             </th:block>
                             <li class="page-item"
-                                th:classappend="${!locationModel.paging.isNextEnabled()? 'disabled' : ''}">
+                                th:classappend="${!userModel.paging.isNextEnabled()? 'disabled' : ''}">
                                 <a class="page-link"
-                                   th:href="@{'/userManagement/location/list?pageNumber=' + ${locationModel.paging.pageNumber + 1}}">Urmatoarea</a>
+                                   th:href="@{'/userManagement/user/list?pageNumber=' + ${userModel.paging.pageNumber + 1}}">Urmatoarea</a>
                             </li>
                         </ul>
                     </nav>

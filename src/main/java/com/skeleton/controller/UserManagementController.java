@@ -4,6 +4,7 @@ import com.skeleton.model.BranchModel;
 import com.skeleton.model.LocationModel;
 import com.skeleton.service.BranchService;
 import com.skeleton.service.LocationService;
+import com.skeleton.service.UserService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,8 @@ public class UserManagementController {
     private final BranchService branchService;
     @NonNull
     private final LocationService locationService;
+    @NonNull
+    private final UserService userService;
 
     @GetMapping(value = "/dashboard")
     public String getList() {
@@ -60,8 +63,8 @@ public class UserManagementController {
 
     @GetMapping(value = "/location/list")
     public String getLocationList(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
-                                @RequestParam(value = "size", required = false, defaultValue = "10") int size,
-                                Model model) {
+                                  @RequestParam(value = "size", required = false, defaultValue = "10") int size,
+                                  Model model) {
         model.addAttribute("locationModel", locationService.getLocationPage(pageNumber, size));
 
         return "userManagement/location/list";
@@ -79,7 +82,7 @@ public class UserManagementController {
     public String saveLocationForm(@PathVariable final Long id,
                                    @Valid @ModelAttribute("locationModel") final LocationModel locationModel,
                                    BindingResult bindingResult, final Model model) {
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             model.addAttribute("branchList", branchService.getAllActive());
 
             return "userManagement/location/form";
@@ -87,5 +90,14 @@ public class UserManagementController {
         locationService.save(locationModel);
 
         return "redirect:/userManagement/location/list";
+    }
+
+    @GetMapping(value = "/user/list")
+    public String getUserList(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
+                              @RequestParam(value = "size", required = false, defaultValue = "10") int size,
+                              Model model) {
+        model.addAttribute("userModel", userService.getUserPage(pageNumber, size));
+
+        return "userManagement/user/list";
     }
 }
