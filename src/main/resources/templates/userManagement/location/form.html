@@ -39,7 +39,7 @@
                                                 <div class="red-color font-size-16" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
                                             </div>
                                             <div class="form-group">
-                                                <label>Branch</label>
+                                                <label>Branch</label><span class="red-color">*</span>
                                                 <div class="col-lg-3 col-md-12 ml-minus-15">
                                                 <select id="location-select" class="form-control" th:field="*{branchId}">
                                                     <option value="">

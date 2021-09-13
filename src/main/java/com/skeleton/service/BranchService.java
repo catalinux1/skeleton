@@ -26,11 +26,11 @@ public class BranchService {
     @NonNull
     private final BranchRepository branchRepository;
 
-    public Paged<Branch> getBranchPage(int pageNumber, int size) {
+    public Paged<BranchModel> getBranchPage(int pageNumber, int size) {
         PageRequest request = PageRequest.of(pageNumber - 1, size, Sort.Direction.DESC, "lastUpdateDate");
-        Page<Branch> branchPage = branchRepository.findAll(request);
+        Page<BranchModel> branchModelPage = branchRepository.findAll(request).map(BranchMapper::entityToModel);
 
-        return new Paged<>(branchPage, Paging.of(branchPage.getTotalPages(), pageNumber, size));
+        return new Paged<>(branchModelPage, Paging.of(branchModelPage.getTotalPages(), pageNumber, size));
     }
 
     public BranchModel getBranchModelById(final Long id) {

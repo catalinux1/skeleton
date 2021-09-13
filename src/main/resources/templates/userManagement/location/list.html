@@ -46,7 +46,7 @@
                                         <tbody class="tbody-color">
                                         <tr th:each="location : ${locationModel.page}">
                                             <td th:text="${location.getName()}"></td>
-                                            <td th:text="${location.branch.name}"></td>
+                                            <td th:text="${location.branchName}"></td>
                                             <td class="text-center">
                                                 <span th:class="${location.active}? 'fa fa-check active' : ' fa fa-times inactive'"></span>
                                             </td>

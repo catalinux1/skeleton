@@ -27,12 +27,11 @@ public class LocationService {
     @NonNull
     private final BranchRepository branchRepository;
 
-
-    public Paged<Location> getLocationPage(final int pageNumber, final int size) {
+    public Paged<LocationModel> getLocationPage(final int pageNumber, final int size) {
         PageRequest request = PageRequest.of(pageNumber - 1, size, Sort.Direction.DESC, "lastUpdateDate");
-        Page<Location> locationPage = locationRepository.findAll(request);
+        Page<LocationModel> locationModelPage = locationRepository.findAll(request).map(LocationMapper::entityToModel);
 
-        return new Paged<>(locationPage, Paging.of(locationPage.getTotalPages(), pageNumber, size));
+        return new Paged<>(locationModelPage, Paging.of(locationModelPage.getTotalPages(), pageNumber, size));
     }
 
     public LocationModel getLocationModelById(final Long id) {
