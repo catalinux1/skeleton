@@ -45,8 +45,9 @@ public class LocationService {
 
     public void save(final LocationModel locationModel) {
         final Branch branch = branchRepository.findById(locationModel.getBranchId()).orElse(null);
-        Location savedLocation = locationRepository.findById(locationModel.getId()).orElse(null);
-        Location location = LocationMapper.modelToEntity(locationModel, branch, savedLocation);
-        locationRepository.save(location);
+        Location lastLocationSaved = locationRepository.findById(locationModel.getId()).orElse(null);
+        Location location = LocationMapper.modelToEntity(locationModel, branch, lastLocationSaved);
+        Location savedLocation = locationRepository.save(location);
+        // todo: de sters din userLocation sau adaugat pe superadministrator
     }
 }

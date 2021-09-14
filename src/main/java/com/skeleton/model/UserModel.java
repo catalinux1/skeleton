@@ -1,5 +1,6 @@
 package com.skeleton.model;
 
+import com.skeleton.entity.Location;
 import com.skeleton.enumerated.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -38,5 +40,22 @@ public class UserModel {
     @Size(min = 2, max = 255, message = "Campul trebuie sa contina intre 2 si 255 caractere!")
     private String lastName;
 
+    @NotEmpty(message = "Campul trebuie completat!")
     private List<Role> roles;
+
+    @Size(max = 255, message = "Campul trebuie sa contina maxim 255 caractere!")
+    private String job;
+
+    @Size(max = 255, message = "Campul trebuie sa contina maxim 255 caractere!")
+    private String phone;
+
+    private Boolean active;
+    private String lastUpdateBy;
+    private LocalDateTime lastUpdateDate;
+    private String createdBy;
+    private LocalDateTime createdDate;
+    private List<Location> locations;
+
+    @NotEmpty(message = "Campul trebuie completat!")
+    private List<Long> locationIds;
 }
